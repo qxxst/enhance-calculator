@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Enhance Calculator</title>
+        <meta name="viewport" content="width=device-width">
+        <meta property="og:title" content="Enhance Calculator">
+        <meta property="og:description" content="placeholder">
+        <meta property="og:image" content="https://raw.githubusercontent.com/qxxst/qxxst.github.io/main/docs/images/branding/quest.png">
+        <meta property="og:url" content="https://qxxst.github.io/enhance-calculator">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/qxxst/qmcss@v1.5-b1/qm.css">
+        <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/qxxst/qxxst.github.io/main/docs/images/favicon.ico">
+        <script src="enhance.js"></script>
+    </head>
+    <body class="w3-center qm-black">
+        <h1 id="title">Enhance Calculator</h1>
+        <div class="w3-metro-darken" id="content">
+            <form>
+                <label for="songs">Number of songs currently in your playlist</label><br>
+                <input type="number" id="songs" min="1" value="30" required>
+                <br><br>
+                <label for="duration">Duration (in hours)</label><br>
+                <input type="number" id="duration" min="0.05" value="1" required>
+            </form>
+            <br>
+            <button class="w3-button" id="calculateButton" onclick="calculate()">Calculate</button>
+            <br><br>
+            <ul class="w3-ul w3-border" id="output-box">
+                <li id="output">placeholder</li>
+            </ul>
+        </div>
+        <footer>
+            <p class="qm-no-margin">© Qxxst. All rights reserved. All trademarks are property of their respective owners in the United States and other countries.</p>
+        </footer>
+    </body>
+</html>
