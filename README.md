@@ -1,2 +1,2 @@
 # Enhance Calculator
-placeholder
+Predict the future length of your playlist.
