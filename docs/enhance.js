@@ -12,20 +12,19 @@ function calculate() {
     const outputField = document.getElementById("output");
     const songsInput = document.getElementById("songs");
     let songs = parseInt(songsInput.value);
+    console.log("We have " + songs + " songs in the playlist.");
     const durationInput = document.getElementById("duration");
-    let durationValue = parseInt(durationInput.value);
+    let durationValue = parseFloat(durationInput.value);
     let durationUnits = "hours";
-    // Convert hours to minutes.
-    if (durationUnits === "hours") {
-        durationValue = durationValue * 60;
-        durationUnits = "minutes";
-    }
+    console.log("The playlist length is " + durationValue + " " + durationUnits + " long.");
     // Help fix any weird inputs.
-    durationValue = Math.floor(durationValue);
-    if (durationValue <= 0) {
-        durationValue = 1;
-    }
+    durationValue = parseFloat(durationValue.toFixed(1));
+    // Convert hours to minutes.
+    durationValue = durationValue * 60;
+    durationUnits = "minutes";
+    console.log("This is " + durationValue + " " + durationUnits + " long.");
     let averageDuration = durationValue / songs;
+    console.log("The average song length is " + averageDuration + " minutes.");
     let enhanceSongs;
     if (songs <= getEnhanceBehavior().behaviorChangeThreshold) {
         enhanceSongs = getEnhanceBehavior().minimumFinalLength - songs;
@@ -35,11 +34,10 @@ function calculate() {
     }
     let newLength = songs + enhanceSongs;
     let newDuration = newLength * averageDuration;
-    if (newDuration > 60) {
-        newDuration = newDuration / 60;
-        durationUnits = "hours";
-    }
-    newDuration = Math.round(newDuration);
+    // Convert minutes back to hours.
+    newDuration = newDuration / 60;
+    durationUnits = "hours";
+    newDuration = parseFloat(newDuration.toFixed(1));
     const outputText = `If you hit enhance, your playlist will become ${newLength} songs long, and will last about ${newDuration} ${durationUnits}.`;
     outputField.innerHTML = outputText;
 }

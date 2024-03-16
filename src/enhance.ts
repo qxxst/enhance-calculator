@@ -13,24 +13,23 @@ function calculate() {
 
     const songsInput: HTMLInputElement = document.getElementById("songs") as HTMLInputElement;
     let songs: number = parseInt(songsInput.value);
+    console.log("We have " + songs + " songs in the playlist.");
     
     const durationInput: HTMLInputElement = document.getElementById("duration") as HTMLInputElement;
-    let durationValue: number = parseInt(durationInput.value);
+    let durationValue: number = parseFloat(durationInput.value);
     let durationUnits: string = "hours";
-
-    // Convert hours to minutes.
-    if (durationUnits === "hours") {
-        durationValue = durationValue * 60;
-        durationUnits = "minutes";
-    }
+    console.log("The playlist length is " + durationValue + " " + durationUnits + " long.");
 
     // Help fix any weird inputs.
-    durationValue = Math.floor(durationValue);
-    if (durationValue <= 0) {
-        durationValue = 1;
-    }
+    durationValue = parseFloat(durationValue.toFixed(1));
+
+    // Convert hours to minutes.
+    durationValue = durationValue * 60;
+    durationUnits = "minutes";
+    console.log("This is " + durationValue + " " + durationUnits + " long.");
 
     let averageDuration: number = durationValue / songs;
+    console.log("The average song length is " + averageDuration + " minutes.");
 
     let enhanceSongs: number;
     if (songs <= getEnhanceBehavior().behaviorChangeThreshold) {
@@ -41,12 +40,12 @@ function calculate() {
 
     let newLength: number = songs + enhanceSongs;
     let newDuration: number = newLength * averageDuration;
-    if (newDuration > 60) {
-        newDuration = newDuration / 60;
-        durationUnits = "hours";
-    }
+    
+    // Convert minutes back to hours.
+    newDuration = newDuration / 60;
+    durationUnits = "hours";
 
-    newDuration = Math.round(newDuration);
+    newDuration = parseFloat(newDuration.toFixed(1));
 
     const outputText: string = `If you hit enhance, your playlist will become ${newLength} songs long, and will last about ${newDuration} ${durationUnits}.`;
     outputField.innerHTML = outputText;
